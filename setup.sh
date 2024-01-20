@@ -145,6 +145,7 @@ echo ""
 git clone https://github.com/vinceliuice/Fluent-kde.git --depth=1
 cd Fluent-kde/
 sudo ./install.sh
+./install.sh
 cd ..
 rm -rf Fluent-kde/
 
