@@ -7,12 +7,12 @@ dosfstools
 exfatprogs
 firefox
 fish
+flatpak
 foomatic-db
 foomatic-db-engine
 foomatic-db-nonfree
 fuse2
 fuse3
-flatpak
 git
 gnu-free-fonts
 gtk-engine-murrine
@@ -51,7 +51,7 @@ unrar
 usbutils
 wget
 wl-clipboard
-xorg-server
 xf86-input-evdev
+xorg-server
 xsel
 yt-dlp
