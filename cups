@@ -1,0 +1,4 @@
+[CUPS]
+title=Common UNIX Printing System
+description=CUPS is a modular printing system for Unix-like computer operating systems which allows a computer to act as a print server.
+ports=631/tcp

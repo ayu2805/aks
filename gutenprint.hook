@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = gutenprint
+
+[Action]
+Depends = gutenprint
+When = PostTransaction
+Exec = /usr/bin/cups-genppdupdate
