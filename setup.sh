@@ -140,25 +140,6 @@ cd ..
 rm -rf WhiteSur-icon-theme/
 
 echo ""
-echo "Installing Fluent KDE Theme..."
-echo ""
-git clone https://github.com/vinceliuice/Fluent-kde.git --depth=1
-cd Fluent-kde/
-sudo ./install.sh
-./install.sh
-cd ..
-rm -rf Fluent-kde/
-
-echo ""
-echo "Installing Fluent GTK Theme..."
-echo ""
-git clone https://github.com/vinceliuice/Fluent-gtk-theme.git --depth=1
-cd Fluent-gtk-theme/
-sudo ./install.sh --tweaks noborder
-cd ..
-rm -rf Fluent-gtk-theme/
-
-echo ""
 echo "Installing KDE..."
 echo ""
 sudo pacman -S --needed --noconfirm - < kde
