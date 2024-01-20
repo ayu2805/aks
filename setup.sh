@@ -185,6 +185,11 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo systemctl enable NetworkManager-dispatcher.service
     sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
     sudo tlp start
+    echo ""
+    read -r -p "Do you want to install TLPUI(from AUR)? [y/N] " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        yay --needed --noconfirm --answerclean A --answerdiff N --removemake tlpui
+    fi
 fi
 
 echo ""
