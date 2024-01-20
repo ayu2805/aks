@@ -66,7 +66,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
     read -r -p "Do you want to install Envy Control(from AUR)? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        yay -S --needed --noconfirm envycontrol
+        yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake envycontrol
         sudo envycontrol -s integrated
     fi
 fi
@@ -76,13 +76,13 @@ echo "SKIP THIS IF YOU DO NOT HAVE GRAPHICS CARD FROM KEPLER SERIES"
 echo ""
 read -r -p "Do you want to install Nvidia drivers(Kepler)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm nvidia-470xx-dkms nvidia-470xx-utils nvidia-470xx-settings nvidia-prime opencl-nvidia-470xx linux-headers
+    yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake nvidia-470xx-dkms nvidia-470xx-utils nvidia-470xx-settings nvidia-prime opencl-nvidia-470xx linux-headers
     sudo systemctl enable nvidia-{suspend,resume,hibernate}
 
     echo ""
     read -r -p "Do you want to install Envy Control? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        yay -S --needed -noconfirm envycontrol
+        yay -S --needed -noconfirm --answerclean A --answerdiff N --removemake envycontrol
         sudo envycontrol -s integrated
     fi
 fi
@@ -223,13 +223,13 @@ fi
 echo ""
 read -r -p "Do you want to install VS Codium (from AUR)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm vscodium-bin
+    yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake vscodium-bin
 fi
 
 echo ""
 read -r -p "Do you want to install Eclipse (from AUR)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm eclipse-java
+    yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake eclipse-java
 fi
 
 echo ""
