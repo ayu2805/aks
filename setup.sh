@@ -149,7 +149,9 @@ else
     sudo pacman -S --needed --noconfirm power-profiles-daemon
     sudo systemctl enable power-profiles-daemon
 fi
+sudo cp kde_settings.conf /etc/sddm.conf.d/
 sudo systemctl enable sddm
+
 if [ "$(pactree -r envycontrol)" ]; then
     git clone https://github.com/enielrodriguez/optimus-gpu-switcher.git --depth=1
     plasmapkg2 -i optimus-gpu-switcher/
