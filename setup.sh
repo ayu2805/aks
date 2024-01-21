@@ -150,6 +150,9 @@ else
     sudo systemctl enable power-profiles-daemon
 fi
 sudo cp kde_settings.conf /etc/sddm.conf.d/
+plasma-apply-lookandfeel -a org.kde.breezedark.desktop
+/usr/lib/plasma-changeicons WhiteSur-dark
+plasma-apply-cursortheme Adwaita
 sudo systemctl enable sddm
 
 if [ "$(pactree -r envycontrol)" ]; then
