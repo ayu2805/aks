@@ -255,5 +255,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sleep 5
 fi
 
+cp QtProject.conf ~/.config/
 echo ""
 echo "You can now reboot your system"
