@@ -61,7 +61,7 @@ echo ""
 read -r -p "Do you want to install Nvidia drivers(Maxwell+)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm nvidia nvidia-utils nvidia-settings nvidia-prime opencl-nvidia #NVIDIA
-    sudo systemctl enable nvidia-{suspend,resume,hibernate}
+    #sudo systemctl enable nvidia-{suspend,resume,hibernate}
 
     echo ""
     read -r -p "Do you want to install Envy Control(from AUR)? [y/N] " response
@@ -77,7 +77,7 @@ echo ""
 read -r -p "Do you want to install Nvidia drivers(Kepler)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake nvidia-470xx-dkms nvidia-470xx-utils nvidia-470xx-settings nvidia-prime opencl-nvidia-470xx linux-headers
-    sudo systemctl enable nvidia-{suspend,resume,hibernate}
+    #sudo systemctl enable nvidia-{suspend,resume,hibernate}
 
     echo ""
     read -r -p "Do you want to install Envy Control? [y/N] " response
