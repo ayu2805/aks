@@ -167,6 +167,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm plasma-wayland-session
 fi
 
+sudo rm -rf /etc/sddm.conf.d/
+sudo mkdir /etc/sddm.conf.d/
 sudo cp kde_settings.conf /etc/sddm.conf.d/
 #plasma-apply-lookandfeel -a org.kde.breezedark.desktop
 #/usr/lib/plasma-changeicons WhiteSur-dark
