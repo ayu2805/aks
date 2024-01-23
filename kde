@@ -10,6 +10,7 @@ kdeconnect
 kdegraphics-thumbnailers
 kdenetwork-filesharing
 kdialog
+kio-admin
 kio-gdrive
 konsole
 maliit-keyboard
@@ -20,3 +21,4 @@ qt5-imageformats
 spectacle
 sweeper
 vlc
+xsettingsd
