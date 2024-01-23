@@ -61,8 +61,6 @@ echo ""
 read -r -p "Do you want to install Nvidia drivers(Maxwell+)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm nvidia-dkms nvidia-utils nvidia-settings nvidia-prime opencl-nvidia #NVIDIA
-    sudo cp mkinitcpio.conf /etc/
-    sudo mkinitcpio -P
     sudo systemctl enable nvidia-{suspend,resume,hibernate}
 
     echo ""
@@ -71,6 +69,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake envycontrol
         sudo envycontrol -s integrated
     fi
+    sudo cp mkinitcpio.conf /etc/
+    sudo mkinitcpio -P
 fi
 
 echo ""
@@ -79,8 +79,6 @@ echo ""
 read -r -p "Do you want to install Nvidia drivers(Kepler)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake nvidia-470xx-dkms nvidia-470xx-utils nvidia-470xx-settings nvidia-prime opencl-nvidia-470xx linux-headers
-    sudo cp mkinitcpio.conf /etc/
-    sudo mkinitcpio -P
     sudo systemctl enable nvidia-{suspend,resume,hibernate}
 
     echo ""
@@ -89,6 +87,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         yay -S --needed -noconfirm --answerclean A --answerdiff N --removemake envycontrol
         sudo envycontrol -s integrated
     fi
+    sudo cp mkinitcpio.conf /etc/
+    sudo mkinitcpio -P
 fi
 
 echo ""
@@ -168,9 +168,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 sudo cp kde_settings.conf /etc/sddm.conf.d/
-plasma-apply-lookandfeel -a org.kde.breezedark.desktop
-/usr/lib/plasma-changeicons WhiteSur-dark
-plasma-apply-cursortheme Adwaita
+#plasma-apply-lookandfeel -a org.kde.breezedark.desktop
+#/usr/lib/plasma-changeicons WhiteSur-dark
+#plasma-apply-cursortheme Adwaita
 sudo systemctl enable sddm
 
 if [ "$(pactree -r envycontrol)" ]; then
