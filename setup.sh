@@ -128,7 +128,7 @@ pipx ensurepath
 #register-python-argcomplete --shell fish pipx >~/.config/fish/completions/pipx.fish
 
 echo ""
-read -r -p "Do you want to install Samba? [y/N] " response
+read -r -p "Do you want to create a Samba shared folder? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo -e "[Share]\ncomment = Samba Share\npath = /home/"$un"/Share\nwritable = yes\nbrowsable = yes\nguest ok = no" | sudo tee -a /etc/samba/smb.conf > /dev/null
     mkdir ~/Share
