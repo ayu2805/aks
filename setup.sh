@@ -95,15 +95,22 @@ echo ""
 sudo pacman -S --needed --noconfirm - <tpkg
 sudo systemctl enable touchegg
 sudo systemctl enable --now ufw
-sudo ufw enable
 sudo systemctl enable --now cups
+sudo cp smb.conf /etc/samba/
+sudo systemctl enable smb nmb
+sudo smbpasswd -a $un
 sudo cp cups /etc/ufw/applications.d/
 sudo cp kdeconnect /etc/ufw/applications.d/
+sudo cp samba /etc/ufw/applications.d/
 sudo cupsctl
+sudo ufw enable
 sudo ufw app update CUPS
 sudo ufw allow CUPS
 sudo ufw app update "KDE Connect"
 sudo ufw allow "KDE Connect"
+sudo ufw app update SMB
+sudo ufw allow SMB
+sudo ufw allow CIFS
 sudo systemctl enable sshd avahi-daemon
 sudo cp /usr/share/doc/avahi/ssh.service /etc/avahi/services/
 sudo ufw allow SSH
@@ -115,17 +122,8 @@ pipx ensurepath
 echo ""
 read -r -p "Do you want to install Samba? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm samba
-    sudo cp smb.conf /etc/samba/
-    sudo systemctl enable smb nmb
     echo -e "[Share]\ncomment = Samba Share\npath = /home/"$un"/Share\nwritable = yes\nbrowsable = yes\nguest ok = no" | sudo tee -a /etc/samba/smb.conf > /dev/null
     mkdir ~/Share
-    echo ""
-    sudo smbpasswd -a $un
-    sudo cp samba /etc/ufw/applications.d/
-    sudo ufw app update SMB
-    sudo ufw allow SMB
-    sudo ufw allow CIFS
 fi
 
 #sudo sed -i 's/Logo=1/Logo=0/' /etc/libreoffice/sofficerc

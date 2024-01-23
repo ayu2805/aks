@@ -38,6 +38,7 @@ python-pipx
 python-pynvim
 python-pyqt5
 python-pyqt6
+samba
 squashfs-tools
 sshfs
 system-config-printer
