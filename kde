@@ -13,6 +13,8 @@ kdialog
 kio-admin
 kio-gdrive
 konsole
+libappindicator-gtk2
+libappindicator-gtk3
 maliit-keyboard
 partitionmanager
 plasma-meta
