@@ -153,6 +153,14 @@ else
     sudo pacman -S --needed --noconfirm power-profiles-daemon
     sudo systemctl enable power-profiles-daemon
 fi
+
+echo ""
+read -r -p "Do you want to install Plasma Wayland Session(Buggy and Unstable)? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    echo ""
+    sudo pacman -S --needed --noconfirm plasma-wayland-session
+fi
+
 sudo cp kde_settings.conf /etc/sddm.conf.d/
 plasma-apply-lookandfeel -a org.kde.breezedark.desktop
 /usr/lib/plasma-changeicons WhiteSur-dark

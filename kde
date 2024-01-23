@@ -18,7 +18,6 @@ libappindicator-gtk3
 maliit-keyboard
 partitionmanager
 plasma-meta
-plasma-wayland-session
 qt5-imageformats
 spectacle
 sweeper
