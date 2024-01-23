@@ -97,10 +97,16 @@ sudo systemctl enable touchegg
 sudo systemctl enable --now ufw
 sudo systemctl enable --now cups
 sudo cp smb.conf /etc/samba/
-sudo systemctl enable smb nmb
+sudo rm -rf /var/lib/samba/usershares
+sudo mkdir /var/lib/samba/usershares
+sudo groupadd -r sambashare
+sudo chown root:sambashare /var/lib/samba/usershares
+sudo chmod 1770 /var/lib/samba/usershares
+sudo gpasswd sambashare -a $un
 echo ""
 sudo smbpasswd -a $un
 echo ""
+sudo systemctl enable smb nmb
 sudo cp cups /etc/ufw/applications.d/
 sudo cp kdeconnect /etc/ufw/applications.d/
 sudo cp samba /etc/ufw/applications.d/
