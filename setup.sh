@@ -98,7 +98,9 @@ sudo systemctl enable --now ufw
 sudo systemctl enable --now cups
 sudo cp smb.conf /etc/samba/
 sudo systemctl enable smb nmb
+echo ""
 sudo smbpasswd -a $un
+echo ""
 sudo cp cups /etc/ufw/applications.d/
 sudo cp kdeconnect /etc/ufw/applications.d/
 sudo cp samba /etc/ufw/applications.d/
