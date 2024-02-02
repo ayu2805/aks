@@ -52,6 +52,7 @@ unrar
 usbutils
 wget
 wl-clipboard
+xclip
 xf86-input-evdev
 xorg-server
 xsel
