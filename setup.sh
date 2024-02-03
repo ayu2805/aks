@@ -128,10 +128,14 @@ pipx ensurepath
 #register-python-argcomplete --shell fish pipx >~/.config/fish/completions/pipx.fish
 
 echo ""
-read -r -p "Do you want to create a Samba shared folder? [y/N] " response
+read -r -p "Do you want to create a Samba Shared folder? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    echo -e "[Share]\ncomment = Samba Share\npath = /home/"$un"/Share\nwritable = yes\nbrowsable = yes\nguest ok = no" | sudo tee -a /etc/samba/smb.conf > /dev/null
-    mkdir ~/Share
+    un=$(whoami)
+    sudo cp smb.conf /etc/samba/
+    echo -e "[Samba Share]\ncomment = Samba Share\npath = /home/$un/Samba Share\nwritable = yes\nbrowsable = yes\nguest ok = no" | sudo tee -a /etc/samba/smb.conf > /dev/null
+    rm -rf ~/Samba\ Share
+    mkdir ~/Samba\ Share
+    sudo systemctl restart smb nmb
 fi
 
 #sudo sed -i 's/Logo=1/Logo=0/' /etc/libreoffice/sofficerc
