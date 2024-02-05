@@ -33,7 +33,15 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-sudo pacman -Syu --needed --noconfirm pacman-contrib linux-headers
+sudo pacman -Syu --needed --noconfirm pacman-contrib
+if [ "$(pactree -r linux)" ]; then
+    sudo pacman -S --needed --noconfirm linux-headers
+fi
+
+if [ "$(pactree -r linux-zen)" ]; then
+    sudo pacman -S --needed --noconfirm linux-zen-headers
+fi
+
 if [ "$(pactree -r yay-bin)" ]; then
     echo ""
     echo "Yay is already installed"
