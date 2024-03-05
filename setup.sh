@@ -68,34 +68,16 @@ fi
 echo ""
 read -r -p "Do you want to install Nvidia drivers(Maxwell+)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm nvidia-dkms nvidia-utils nvidia-settings nvidia-prime opencl-nvidia #NVIDIA
-    sudo sed -i 's/MODULES=\(.*\)/MODULES=\(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-    sudo mkinitcpio -P
-    sudo systemctl enable nvidia-{suspend,resume,hibernate}
+    sudo pacman -S --needed --noconfirm nvidia-dkms nvidia-utils nvidia-settings nvidia-prime opencl-nvidia switcheroo-control #NVIDIA
+    #sudo sed -i 's/MODULES=\(.*\)/MODULES=\(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+    #sudo mkinitcpio -P
+    sudo systemctl enable nvidia-persistenced switcheroo-control
 
     echo ""
     read -r -p "Do you want to install Envy Control(from AUR)? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake envycontrol
-        sudo envycontrol -s integrated
-    fi
-fi
-
-echo ""
-echo "SKIP THIS IF YOU DO NOT HAVE GRAPHICS CARD FROM KEPLER SERIES"
-echo ""
-read -r -p "Do you want to install Nvidia drivers(Kepler)? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake nvidia-470xx-dkms nvidia-470xx-utils nvidia-470xx-settings nvidia-prime opencl-nvidia-470xx linux-headers
-    sudo sed -i 's/MODULES=\(.*\)/MODULES=\(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-    sudo mkinitcpio -P
-    sudo systemctl enable nvidia-{suspend,resume,hibernate}
-
-    echo ""
-    read -r -p "Do you want to install Envy Control? [y/N] " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        yay -S --needed -noconfirm --answerclean A --answerdiff N --removemake envycontrol
-        sudo envycontrol -s integrated
+        #sudo envycontrol -s integrated
     fi
 fi
 
@@ -227,11 +209,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo systemctl enable NetworkManager-dispatcher.service
     sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
     sudo tlp start
-    echo ""
-    read -r -p "Do you want to install TLPUI(from AUR)? [y/N] " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake tlpui
-    fi
 fi
 
 echo ""
