@@ -158,13 +158,6 @@ else
     sudo systemctl enable power-profiles-daemon
 fi
 
-echo ""
-read -r -p "Do you want to install Plasma Wayland Session(Buggy and Unstable)? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    echo ""
-    sudo pacman -S --needed --noconfirm plasma-wayland-session
-fi
-
 sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
 sudo cp kde_settings.conf /etc/sddm.conf.d/
@@ -248,12 +241,6 @@ echo ""
 read -r -p "Do you want to install Code-OSS? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm code
-fi
-
-echo ""
-read -r -p "Do you want to install VS Codium (from AUR)? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake vscodium-bin
 fi
 
 echo ""
