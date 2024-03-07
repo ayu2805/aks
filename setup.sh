@@ -166,13 +166,6 @@ sudo cp kde_settings.conf /etc/sddm.conf.d/
 #plasma-apply-cursortheme Adwaita
 sudo systemctl enable sddm
 
-if [ "$(pactree -r envycontrol)" ]; then
-    rm -rf ~/.local/share/plasma/plasmoids/optimus-gpu-switcher
-    git clone https://github.com/enielrodriguez/optimus-gpu-switcher.git --depth=1
-    plasmapkg2 -i optimus-gpu-switcher/
-    rm -rf optimus-gpu-switcher/
-fi
-
 echo ""
 read -r -p "Do you want to configure git? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
