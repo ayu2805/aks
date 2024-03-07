@@ -3,7 +3,6 @@ colord-kde
 dolphin
 dolphin-plugins
 ffmpegthumbs
-flatpak-kcm
 gwenview
 kcalc
 kdeconnect
@@ -13,13 +12,12 @@ kdialog
 kfind
 kio-admin
 kio-gdrive
+kio-zeroconf
 konsole
-libappindicator-gtk2
 libappindicator-gtk3
 partitionmanager
-plasma-meta
-qt5-imageformats
+plasma
+qt6-imageformats
 spectacle
 sweeper
 vlc
-xsettingsd
