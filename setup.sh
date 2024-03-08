@@ -139,15 +139,6 @@ grep -qF "set number" /etc/xdg/nvim/sysinit.vim || echo "set number" | sudo tee 
 grep -qF "set wrap!" /etc/xdg/nvim/sysinit.vim || echo "set wrap!" | sudo tee -a /etc/xdg/nvim/sysinit.vim > /dev/null
 
 echo ""
-echo "Installing WhiteSur Icon Theme..."
-echo ""
-git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1
-cd WhiteSur-icon-theme/
-sudo ./install.sh -a
-cd ..
-rm -rf WhiteSur-icon-theme/
-
-echo ""
 echo "Installing KDE..."
 echo ""
 sudo pacman -S --needed --noconfirm - < kde
