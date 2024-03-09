@@ -200,13 +200,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm chromium
 fi
 
-
-echo ""
-read -r -p "Do you want to install Kate? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm kate
-fi
-
 echo ""
 read -r -p "Do you want Bluetooth Service? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -217,7 +210,7 @@ fi
 echo ""
 read -r -p "Do you want to install HPLIP (Driver for HP printers)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm hplip sane python-pillow rpcbind python-reportlab
+    sudo pacman -S --needed --noconfirm hplip xsane python-pillow rpcbind python-reportlab
     hp-plugin -i
 fi
 
