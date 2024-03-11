@@ -91,6 +91,7 @@ hn=$(hostname)
 echo -e "netbios name = $hn\n" | sudo tee -a /etc/samba/smb.conf > /dev/null
 sudo rm -rf /var/lib/samba/usershares
 sudo mkdir /var/lib/samba/usershares
+sudo groupdel sambashare
 sudo groupadd -r sambashare
 sudo chown root:sambashare /var/lib/samba/usershares
 sudo chmod 1770 /var/lib/samba/usershares
