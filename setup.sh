@@ -9,9 +9,9 @@ if [ "$(id -u)" = 0 ]; then
     exit 1
 fi
 
+un=$(whoami)
 read -p "Enter your Full Name: " fn
 if [ -n "$fn" ]; then
-    un=$(whoami)
     sudo chfn -f "$fn" "$un"
 else
     echo ""
