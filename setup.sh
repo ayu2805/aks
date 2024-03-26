@@ -78,7 +78,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     read -r -p "Do you want to install Envy Control(from AUR)? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake envycontrol
-        #sudo envycontrol -s integrated
+        sudo envycontrol --cache-create
+	sudo envycontrol --cache-query
+        sudo envycontrol -s integrated
     fi
 fi
 
