@@ -3,6 +3,7 @@ android-tools
 aria2
 ascii
 cups-pdf
+clang
 dbus-python
 dosfstools
 exfatprogs
@@ -19,6 +20,7 @@ gtk-engine-murrine
 gutenprint
 inetutils
 jdk-openjdk
+llvm
 libreoffice-fresh
 libsecret
 lrzip
