@@ -77,7 +77,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
     read -r -p "Do you want to install Envy Control(from AUR)? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake envycontrol
+        yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake --cleanafter envycontrol
         sudo envycontrol --cache-create
 	sudo envycontrol --cache-query
         sudo envycontrol -s integrated
@@ -222,12 +222,6 @@ echo ""
 read -r -p "Do you want to install Code-OSS? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm code
-fi
-
-echo ""
-read -r -p "Do you want to install Eclipse (from AUR)? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake eclipse-java
 fi
 
 echo ""
