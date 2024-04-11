@@ -54,6 +54,8 @@ else
     rm -rf yay-bin
 fi
 
+yay -S --answerclean A --answerdiff N --removemake --cleanafter --save
+
 echo ""
 read -r -p "Do you want to install Intel drivers? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -77,7 +79,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
     read -r -p "Do you want to install Envy Control(from AUR)? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        yay -S --needed --noconfirm --answerclean A --answerdiff N --removemake --cleanafter envycontrol
+        yay -S --needed --noconfirm envycontrol
         sudo envycontrol --cache-create
 	sudo envycontrol --cache-query
         sudo envycontrol -s integrated
