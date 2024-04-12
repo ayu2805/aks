@@ -177,7 +177,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	ssh-keygen -C "$git_email"
  	git config --global gpg.format ssh
   	git config --global user.signingkey /home/$un/.ssh/id_ed25519.pub
-        echo ""
+        git config --global commit.gpgsign true
+	echo ""
         echo "Make changes accordingly if SSH key is generated again"
     fi
 fi
