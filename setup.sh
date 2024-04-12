@@ -82,7 +82,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         yay -S --needed --noconfirm envycontrol
         sudo envycontrol --cache-create
 	sudo envycontrol --cache-query
-        sudo envycontrol -s integrated
+        #sudo envycontrol -s integrated
     fi
 fi
 
