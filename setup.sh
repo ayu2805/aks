@@ -65,15 +65,21 @@ fi
 echo ""
 read -r -p "Do you want to install AMD/ATI drivers? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm mesa xf86-video-amdgpu xf86-video-ati libva-mesa-driver vulkan-radeon amdvlk #AMD/ATI
+    sudo pacman -S --needed --noconfirm mesa xf86-video-amdgpu xf86-video-ati libva-mesa-driver vulkan-radeon #AMD/ATI
+fi
+
+echo ""
+read -r -p "Do you want to install Nouveau drivers? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sudo pacman -S --needed --noconfirm mesa vulkan-nouveau #Nouveau
 fi
 
 echo ""
 read -r -p "Do you want to install Nvidia drivers(Maxwell+)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm nvidia-dkms nvidia-utils nvidia-settings nvidia-prime opencl-nvidia switcheroo-control #NVIDIA
-    #sudo sed -i 's/MODULES=\(.*\)/MODULES=\(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-    #sudo mkinitcpio -P
+    sudo sed -i 's/MODULES=\(.*\)/MODULES=\(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+    sudo mkinitcpio -P
     sudo systemctl enable nvidia-persistenced switcheroo-control
 
     echo ""
@@ -81,7 +87,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         yay -S --needed --noconfirm envycontrol
         sudo envycontrol --cache-create
-	sudo envycontrol --cache-query
+	    sudo envycontrol --cache-query
         #sudo envycontrol -s integrated
     fi
 fi
