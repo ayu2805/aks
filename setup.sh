@@ -89,6 +89,7 @@ sudo pacman -S --needed --noconfirm - <tpkg
 sudo systemctl enable touchegg
 sudo systemctl enable --now ufw
 sudo systemctl enable --now cups
+sudo systemctl enable power-profiles-daemon
 sudo cp smb.conf /etc/samba/
 hn=$(hostname)
 echo -e "netbios name = $hn\n" | sudo tee -a /etc/samba/smb.conf > /dev/null
@@ -146,12 +147,6 @@ echo ""
 echo "Installing KDE..."
 echo ""
 sudo pacman -S --needed --noconfirm - < kde
-if [ "$(pactree -r tlp)" ]; then
-    echo ""
-else
-    sudo pacman -S --needed --noconfirm power-profiles-daemon
-    sudo systemctl enable power-profiles-daemon
-fi
 
 sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
@@ -179,18 +174,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	echo ""
         echo "Make changes accordingly if SSH key is generated again"
     fi
-fi
-
-echo ""
-read -r -p "Do you want to install TLP (and remove Power Profiles Daemon)? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    echo ""
-    sudo pacman -Rscn --noconfirm power-profiles-daemon
-    sudo pacman -S --needed --noconfirm tlp tlp-rdw smartmontools ethtool
-    sudo systemctl enable tlp.service
-    sudo systemctl enable NetworkManager-dispatcher.service
-    sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
-    sudo tlp start
 fi
 
 echo ""
