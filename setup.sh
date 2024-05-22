@@ -118,7 +118,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     un=$(whoami)
     hn=$(hostname)
     sudo cp smb.conf /etc/samba/
-    echo -e "netbios name = $hn\n" | sudo tee -a /etc/samba/smb.conf > /dev/null
+    echo -e "netbios name = $hn\n\n" | sudo tee -a /etc/samba/smb.conf > /dev/null
     echo -e "[Samba Share]\ncomment = Samba Share\npath = /home/$un/Samba Share\nwritable = yes\nbrowsable = yes\nguest ok = no" | sudo tee -a /etc/samba/smb.conf > /dev/null
     rm -rf ~/Samba\ Share
     mkdir ~/Samba\ Share
