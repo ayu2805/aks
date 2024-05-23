@@ -109,6 +109,7 @@ chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
 pipx ensurepath
 echo -e "127.0.0.1\tlocalhost\n127.0.1.1\t$(hostname)\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters" | sudo tee /etc/hosts > /dev/null
+warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
 #register-python-argcomplete --shell fish pipx >~/.config/fish/completions/pipx.fish
 
 echo ""
