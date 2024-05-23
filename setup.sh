@@ -109,7 +109,6 @@ chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
 pipx ensurepath
 echo -e "127.0.0.1\tlocalhost\n127.0.1.1\t$(hostname)\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters" | sudo tee /etc/hosts > /dev/null
-warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
 #register-python-argcomplete --shell fish pipx >~/.config/fish/completions/pipx.fish
 
 echo ""
@@ -195,6 +194,7 @@ read -r -p "Do you want to install Cloudflare Warp? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
     wget -q -nc --show-progress https://github.com/ayu2805/cwi/releases/download/cloudflare-warp-install/cloudflare-warp-install && bash cloudflare-warp-install && rm cloudflare-warp-install
+    warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
     echo ""
     echo "Waiting for 5 seconds..."
     sleep 5
