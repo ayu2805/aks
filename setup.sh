@@ -181,7 +181,6 @@ echo ""
 read -r -p "Do you want to install VSCode(AUR)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -S --needed --noconfirm visual-studio-code-bin
-fi
 
 echo ""
 read -r -p "Do you want to install Telegram? [y/N] " response
