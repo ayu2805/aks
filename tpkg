@@ -7,7 +7,6 @@ cups-pdf
 dosfstools
 e2fsprogs
 exfat-utils
-exfatprogs
 f2fs-tools
 fatresize
 fish
