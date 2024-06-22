@@ -132,6 +132,7 @@ echo ""
 echo "Installing KDE..."
 echo ""
 sudo pacman -S --needed --noconfirm - < kde
+sudo pacman -Rscn --noconfirm krdp
 
 sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
