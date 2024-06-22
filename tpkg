@@ -14,6 +14,7 @@ flatpak
 foomatic-db
 foomatic-db-engine
 foomatic-db-nonfree
+fprintd
 git
 gtk-engine-murrine
 gutenprint
