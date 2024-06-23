@@ -179,9 +179,14 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-read -r -p "Do you want to install VSCode(AUR)? [y/N] " response
+read -r -p "Do you want to install Code-OSS? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -S --needed --noconfirm visual-studio-code-bin
+    sudo pacman -S --needed --noconfirm code
+    echo ""
+    read -r -p "Do you want to install proprietary VSCode Marketplace? [y/N] " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        yay -S --needed --noconfirm code-marketplace
+    fi
 fi
 
 echo ""
