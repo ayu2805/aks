@@ -88,7 +88,7 @@ sudo pacman -S --needed --noconfirm - <tpkg
 sudo systemctl enable touchegg
 sudo systemctl enable --now ufw
 sudo systemctl enable --now cups
-sudo sustemctl disable systemd-resolved.service
+sudo systemctl disable systemd-resolved.service
 sudo systemctl enable sshd avahi-daemon power-profiles-daemon
 sudo cp smb.conf /etc/samba/
 echo -e "netbios name = $(hostname)\n\n" | sudo tee -a /etc/samba/smb.conf > /dev/null
