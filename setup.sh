@@ -138,6 +138,7 @@ sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
 sudo cp kde_settings.conf /etc/sddm.conf.d/
 sudo systemctl enable sddm
+echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
 echo ""
 read -r -p "Do you want to Touchpad configuration? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -146,7 +147,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     product_id=$(echo $touchpad_id | awk '{print substr($2, 6, 9)}')
     vendor_id_dec=$(printf "%d" 0x$vendor_id)
     product_id_dec=$(printf "%d" 0x$product_id)
-    echo -e "[Libinput][$vendor_id_dec][$product_id_dec][$touchpad_id]\nNaturalScroll=true" | tee ~/.config/kcminputrc > /dev/null
+    echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
+    echo -e "\n[Libinput][$vendor_id_dec][$product_id_dec][$touchpad_id]\nNaturalScroll=true" | tee -a ~/.config/kcminputrc > /dev/null
 fi
 
 echo ""
