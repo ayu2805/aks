@@ -85,7 +85,6 @@ fi
 
 echo ""
 sudo pacman -S --needed --noconfirm - <tpkg
-sudo systemctl enable touchegg
 sudo systemctl enable --now ufw
 sudo systemctl enable --now cups
 sudo systemctl disable systemd-resolved.service
