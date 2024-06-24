@@ -138,6 +138,16 @@ sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
 sudo cp kde_settings.conf /etc/sddm.conf.d/
 sudo systemctl enable sddm
+echo ""
+read -r -p "Do you want to Touchpad configuration? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    touchpad_id=$(sudo libinput list-devices | grep "Touchpad" | awk '{print substr($0, 19)}')
+    vendor_id=$(echo $touchpad_id | awk '{print substr($2, 1, 4)}')
+    product_id=$(echo $touchpad_id | awk '{print substr($2, 6, 9)}')
+    vendor_id_dec=$(printf "%d" 0x$vendor_id)
+    product_id_dec=$(printf "%d" 0x$product_id)
+    echo -e "[Libinput][$vendor_id_dec][$product_id_dec][$touchpad_id]\nNaturalScroll=true" | tee ~/.config/kcminputrc > /dev/null
+fi
 
 echo ""
 read -r -p "Do you want to configure git? [y/N] " response
