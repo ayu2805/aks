@@ -137,6 +137,7 @@ sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
 sudo cp kde_settings.conf /etc/sddm.conf.d/
 sudo systemctl enable sddm
+echo -e "[General]\nRememberOpenedTabs=false" | tee ~/.config/dolphinrc > /dev/null
 echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
 echo ""
 read -r -p "Do you want to Touchpad configuration? [y/N] " response
