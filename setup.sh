@@ -129,6 +129,7 @@ sudo pacman -S --needed --noconfirm - < kde
 sudo rm -rf /etc/sddm.conf.d/
 sudo mkdir /etc/sddm.conf.d/
 sudo cp kde_settings.conf /etc/sddm.conf.d/
+sudo sed -i 's/^background=.*/background=\/usr\/share\/wallpapers\/Next\/contents\/images_dark\/5120x2880.png/' /usr/share/sddm/themes/breeze/theme.conf
 sudo systemctl enable sddm
 echo -e "[General]\nRememberOpenedTabs=false" | tee ~/.config/dolphinrc > /dev/null
 echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
