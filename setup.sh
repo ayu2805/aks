@@ -180,7 +180,7 @@ fi
 echo ""
 read -r -p "Do you want to install HPLIP (Driver for HP printers)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm hplip python-pyqt5 xsane
+    sudo pacman -S --needed --noconfirm hplip python-pyqt5 sane
     hp-plugin -i
 fi
 
