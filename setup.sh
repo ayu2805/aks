@@ -46,6 +46,7 @@ if [ "$(pactree -r yay-bin)" ]; then
     echo ""
     echo "Yay is already installed"
 else
+    sudo pacman -S --needed --noconfirm git base-devel
     git clone https://aur.archlinux.org/yay-bin.git --depth=1
     cd yay-bin
     yes | makepkg -si
