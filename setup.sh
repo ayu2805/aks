@@ -133,8 +133,7 @@ sudo sed -i 's/^background=.*/background=\/usr\/share\/wallpapers\/Next\/content
 sudo systemctl enable sddm
 echo -e "[General]\nRememberOpenedTabs=false" | tee ~/.config/dolphinrc > /dev/null
 echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
-mkdir -p ~/.config/kdedefaults/
-echo -e "[General]\nColorScheme=BreezeDark\n\n[Icons]\nTheme=breeze-dark\n\n[KDE]\nwidgetStyle=Breeze\n" | tee ~/.config/kdedefaults/kdeglobals > /dev/null
+echo -e "[KDE]\nLookAndFeelPackage=org.kde.breezedark.desktop" | tee ~/.config/kdeglobals > /dev/null
 echo ""
 read -r -p "Do you want to Touchpad configuration? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
