@@ -126,14 +126,16 @@ echo ""
 echo "Installing KDE..."
 echo ""
 sudo pacman -S --needed --noconfirm - < kde
-echo -e "SSH_ASKPASS=/usr/bin/ksshaskpass\nSSH_ASKPASS_REQUIRE=prefer" | sudo tee -a /etc/environment > /dev/null
 sudo mkdir -p /etc/sddm.conf.d/
 echo -e "[General]\nNumlock=on\nInputMethod=qtvirtualkeyboard\n\n[Theme]\nCurrent=breeze\nCursorTheme=breeze_cursors" | sudo tee /etc/sddm.conf.d/kde_settings.conf > /dev/null
 sudo sed -i 's/^background=.*/background=\/usr\/share\/wallpapers\/Next\/contents\/images_dark\/5120x2880.png/' /usr/share/sddm/themes/breeze/theme.conf
 sudo systemctl enable sddm
+
 echo -e "[General]\nRememberOpenedTabs=false" | tee ~/.config/dolphinrc > /dev/null
 echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
 echo -e "[KDE]\nLookAndFeelPackage=org.kde.breezedark.desktop" | tee ~/.config/kdeglobals > /dev/null
+echo -e "[PlasmaViews][Panel 2]\nfloating=0\n\n[PlasmaViews][Panel 2][Defaults]\nthickness=40" | tee ~/.config/plasmashellrc > /dev/null
+
 echo ""
 read -r -p "Do you want to Touchpad configuration? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
