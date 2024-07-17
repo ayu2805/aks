@@ -133,7 +133,7 @@ sudo systemctl enable sddm
 echo -e "[General]\nRememberOpenedTabs=false" | tee ~/.config/dolphinrc > /dev/null
 echo -e "[Keyboard]\nNumLock=0" | tee ~/.config/kcminputrc > /dev/null
 echo -e "[KDE]\nLookAndFeelPackage=org.kde.breezedark.desktop" | tee ~/.config/kdeglobals > /dev/null
-echo -e "[PlasmaViews][Panel 2]\nfloating=0\n\n[PlasmaViews][Panel 2][Defaults]\nthickness=40" | tee ~/.config/plasmashellrc > /dev/null
+echo -e "[PlasmaViews][Panel 2]\nfloating=0\n\n[PlasmaViews][Panel 2][Defaults]\nthickness=40\n\n" | tee ~/.config/plasmashellrc > /dev/null
 echo -e "[General]\nconfirmLogout=false\nloginMode=emptySession" | tee ~/.config/ksmserverrc > /dev/null
 
 echo ""
