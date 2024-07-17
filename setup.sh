@@ -51,12 +51,14 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
     sudo pacman -Syu
 
-    if [ !"$(pactree -r yay || pactree -r yay-bin)" ]; then
+    if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
+    else
         sudo pacman -S --needed --noconfirm yay
     fi
 fi
 
-if [ !"$(pactree -r yay || pactree -r yay-bin)" ]; then
+if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
+else
     sudo pacman -S --needed --noconfirm git base-devel
     git clone https://aur.archlinux.org/yay-bin.git --depth=1
     cd yay-bin
