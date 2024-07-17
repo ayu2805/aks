@@ -227,7 +227,19 @@ echo ""
 read -r -p "Do you want to install Cloudflare Warp? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
-    wget -q -nc --show-progress https://github.com/ayu2805/cwi/releases/download/cloudflare-warp-install/cloudflare-warp-install && bash cloudflare-warp-install && rm cloudflare-warp-install
+    yay -S --needed --noconfirm cloudflare-warp-bin
+    sudo systemctl enable --now warp-svc
+    echo "\nWaiting for few seconds for the services...\n"
+    sleep 3
+    warp-cli registration delete
+    echo "\nRegistering WARP...\n"
+    warp-cli registration new
+    read -r -p "Do you want to connect to warp now? [y/N] " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        warp-cli connect
+        echo "\nWaiting for 5 seconds..."
+        sleep 5
+    fi
     warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
 fi
 
