@@ -21,12 +21,11 @@ sudo rm -rf /etc/pacman.d/hooks/
 sudo mkdir /etc/pacman.d/hooks/
 sudo cp gutenprint.hook /etc/pacman.d/hooks/
 sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/
-sudo pacman -Syu
 
 echo ""
 read -r -p "Do you want to install Reflector? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm reflector
+    sudo pacman -Syu --needed --noconfirm reflector
     echo ""
     echo "It will take time to fetch the server/mirrors so please wait"
     sudo reflector --save /etc/pacman.d/mirrorlist -p https -c 'Netherlands,United States, ' -l 10 --sort rate
@@ -50,6 +49,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman-key --lsign-key 3056513887B78AEB
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
     sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+    echo -e "[Chaotic-AUR]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
+    sudo pacman -Syu
 
     if [ "$(pactree -r yay-bin)" || "$(pactree -r yay)"]; then
         echo ""
