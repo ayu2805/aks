@@ -42,7 +42,23 @@ if [ "$(pactree -r linux-zen)" ]; then
     sudo pacman -S --needed --noconfirm linux-zen-headers
 fi
 
-if [ "$(pactree -r yay-bin)" ]; then
+echo ""
+read -r -p "Do you want Chaotic-AUR? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+    sudo pacman-key --lsign-key 3056513887B78AEB
+    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+    if [ "$(pactree -r yay-bin)" || "$(pactree -r yay)"]; then
+        echo ""
+        echo "Yay is already installed"
+    else
+        sudo pacman -S --needed --noconfirm yay
+    fi
+fi
+
+if [ "$(pactree -r yay-bin)" || "$(pactree -r yay)"]; then
     echo ""
     echo "Yay is already installed"
 else
