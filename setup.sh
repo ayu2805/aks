@@ -43,7 +43,7 @@ if [ "$(pactree -r linux-zen)" ]; then
 fi
 
 if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
-    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf /dev/null
+    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf > /dev/null
 else
     echo ""
     read -r -p "Do you want Chaotic-AUR? [y/N] " response
