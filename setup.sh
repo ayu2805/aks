@@ -42,19 +42,23 @@ if [ "$(pactree -r linux-zen)" ]; then
     sudo pacman -S --needed --noconfirm linux-zen-headers
 fi
 
-echo ""
-read -r -p "Do you want Chaotic-AUR? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-    sudo pacman-key --lsign-key 3056513887B78AEB
-    sudo pacman -U --needed --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
     echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
-    sudo pacman -Syu
+else
+    echo ""
+    read -r -p "Do you want Chaotic-AUR? [y/N] " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+        sudo pacman-key --lsign-key 3056513887B78AEB
+        sudo pacman -U sudo pacman -U --needed --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
+        sudo pacman -Syu
 
-    if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
-        true
-    else
-        sudo pacman -S --needed --noconfirm yay
+        if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
+            true
+        else
+            sudo pacman -S --needed --noconfirm yay
+        fi
     fi
 fi
 
