@@ -26,8 +26,7 @@ echo ""
 read -r -p "Do you want to install Reflector? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo pacman -Syu --needed --noconfirm reflector
-    echo ""
-    echo "It will take time to fetch the server/mirrors so please wait"
+    echo -e "It will take time to fetch the server/mirrors so please wait"
     sudo reflector --save /etc/pacman.d/mirrorlist -p https -c 'Netherlands,United States, ' -l 10 --sort rate
     #Change location as per your need
 fi
@@ -229,15 +228,15 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
     yay -S --needed --noconfirm cloudflare-warp-bin
     sudo systemctl enable --now warp-svc
-    echo "\nWaiting for few seconds for the services...\n"
+    echo -e "\nWaiting for few seconds for the services...\n"
     sleep 3
     warp-cli registration delete
-    echo "\nRegistering WARP...\n"
+    echo -e "\nRegistering WARP...\n"
     warp-cli registration new
     read -r -p "Do you want to connect to warp now? [y/N] " response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         warp-cli connect
-        echo "\nWaiting for 5 seconds..."
+        echo -e "\nWaiting for 5 seconds..."
         sleep 5
     fi
     warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
