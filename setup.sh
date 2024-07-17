@@ -21,11 +21,12 @@ sudo rm -rf /etc/pacman.d/hooks/
 sudo mkdir /etc/pacman.d/hooks/
 sudo cp gutenprint.hook /etc/pacman.d/hooks/
 sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/
+sudo pacman -Syu
 
 echo ""
 read -r -p "Do you want to install Reflector? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -Syu --needed --noconfirm reflector
+    sudo pacman -S --needed --noconfirm reflector
     echo ""
     echo "It will take time to fetch the server/mirrors so please wait"
     sudo reflector --save /etc/pacman.d/mirrorlist -p https -c 'Netherlands,United States, ' -l 10 --sort rate
