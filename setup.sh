@@ -54,7 +54,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     if [ "$(pactree -r yay-bin)" ] ; then
         echo ""
         echo "Yay is already installed"
-    else if [ "$(pactree -r yay)"] ; then
+    elif [ "$(pactree -r yay)"] ; then
         echo ""
         echo "Yay is already installed"
     else
@@ -65,7 +65,7 @@ fi
 if [ "$(pactree -r yay-bin)" ] ; then
     echo ""
     echo "Yay is already installed"
-else if [ "$(pactree -r yay)"] ; then
+elif [ "$(pactree -r yay)"] ; then
     echo ""
     echo "Yay is already installed"
 else
