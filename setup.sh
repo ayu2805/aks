@@ -226,19 +226,7 @@ echo ""
 read -r -p "Do you want to install Cloudflare Warp? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo ""
-    yay -S --needed --noconfirm cloudflare-warp-bin
-    sudo systemctl enable --now warp-svc
-    echo -e "\nWaiting for few seconds for the services...\n"
-    sleep 3
-    warp-cli registration delete
-    echo -e "\nRegistering WARP...\n"
-    warp-cli registration new
-    read -r -p "Do you want to connect to warp now? [y/N] " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        warp-cli connect
-        echo -e "\nWaiting for 5 seconds..."
-        sleep 5
-    fi
+    bash -c "$(curl -Ss https://gist.githubusercontent.com/ayu2805/7ad8100b15699605fbf50291af8df16c/raw/warp-update)"
     warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
 fi
 
