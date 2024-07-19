@@ -81,9 +81,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-read -r -p "Do you want to install AMD/ATI drivers? [y/N] " response
+read -r -p "Do you want to install AMD drivers? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm mesa xf86-video-amdgpu xf86-video-ati libva-mesa-driver vulkan-radeon #AMD/ATI
+    sudo pacman -S --needed --noconfirm mesa xf86-video-amdgpu libva-mesa-driver vulkan-radeon #AMD/ATI
 fi
 
 echo ""
