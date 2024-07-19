@@ -16,9 +16,9 @@ else
     true
 fi
 
-sudo cp pacman.conf /etc/
-sudo rm -rf /etc/pacman.d/hooks/
-sudo mkdir /etc/pacman.d/hooks/
+grep -qF "Include = /etc/pacman.d/custom" /etc/pacman.conf || echo "Include = /etc/pacman.d/custom" | sudo tee -a /etc/pacman.conf > /dev/null
+echo -e "[options]\nColor\nParallelDownloads = 5\nILoveCandy\n" | sudo tee /etc/pacman.d/custom > /dev/null
+sudo mkdir -p /etc/pacman.d/hooks/
 sudo cp gutenprint.hook /etc/pacman.d/hooks/
 sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 
@@ -42,7 +42,7 @@ if [ "$(pactree -r linux-zen)" ]; then
 fi
 
 if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
-    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf > /dev/null
+    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.d/custom > /dev/null
 else
     echo ""
     read -r -p "Do you want Chaotic-AUR? [y/N] " response
@@ -50,7 +50,7 @@ else
         sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
         sudo pacman-key --lsign-key 3056513887B78AEB
         sudo pacman -U --needed --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf > /dev/null
+        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.d/custom > /dev/null
         sudo pacman -Syu
 
         if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
