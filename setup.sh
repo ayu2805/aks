@@ -185,9 +185,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-read -r -p "Do you want to install Chromium? [y/N] " response
+read -r -p "Do you want to install Google Chrome? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm chromium
+    sudo pacman -S --needed --noconfirm google-chrome
 fi
 
 echo ""
