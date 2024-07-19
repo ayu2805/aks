@@ -42,7 +42,7 @@ if [ "$(pactree -r linux-zen)" ]; then
 fi
 
 if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
-    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.d/custom > /dev/null
+    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
 else
     echo ""
     read -r -p "Do you want Chaotic-AUR? [y/N] " response
@@ -50,7 +50,7 @@ else
         sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
         sudo pacman-key --lsign-key 3056513887B78AEB
         sudo pacman -U --needed --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.d/custom > /dev/null
+        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
         sudo pacman -Syu
 
         if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
