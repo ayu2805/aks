@@ -125,7 +125,6 @@ echo -e "127.0.0.1\tlocalhost\n127.0.1.1\t$(hostname)\n\n# The following lines a
 echo ""
 read -r -p "Do you want to create a Samba Shared folder? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    echo -e "[global]\nworkgroup = WORKGROUP\nserver string = Samba Server\nnetbios name = $(hostname)\n\n" | sudo tee /etc/samba/smb.conf > /dev/null
     echo -e "[Samba Share]\ncomment = Samba Share\npath = /home/$(whoami)/Samba Share\nwritable = yes\nbrowsable = yes\nguest ok = no" | sudo tee -a /etc/samba/smb.conf > /dev/null
     rm -rf ~/Samba\ Share
     mkdir ~/Samba\ Share
