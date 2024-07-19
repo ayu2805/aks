@@ -13,7 +13,7 @@ read -p "Enter your Full Name: " fn
 if [ -n "$fn" ]; then
     sudo chfn -f "$fn" "$(whoami)"
 else
-    echo ""
+    true
 fi
 
 sudo cp pacman.conf /etc/
