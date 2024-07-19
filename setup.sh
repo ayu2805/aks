@@ -229,6 +229,13 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     warp-cli generate-completions fish | sudo tee /etc/fish/completions/warp-cli.fish > /dev/null
 fi
 
+echo ""
+read -r -p "Do you want Gaming Stuff? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    echo ""
+    bash -c "$(curl -sS https://gist.githubusercontent.com/ayu2805/37d0d1740cd7cc8e1a37b2a1c2ecf7a6/raw/archlinux-gaming-setup)"
+fi
+
 cp QtProject.conf ~/.config/
 echo ""
 echo "You can now reboot your system"
