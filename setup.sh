@@ -77,13 +77,13 @@ yay -S --answerclean A --answerdiff N --removemake --cleanafter --save
 echo ""
 read -r -p "Do you want to install Intel drivers? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm mesa libva-intel-driver intel-media-driver vulkan-intel
+    sudo pacman -S --needed --noconfirm libva-intel-driver intel-media-driver vulkan-intel
 fi
 
 echo ""
 read -r -p "Do you want to install AMD drivers? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm mesa xf86-video-amdgpu libva-mesa-driver vulkan-radeon
+    sudo pacman -S --needed --noconfirm xf86-video-amdgpu libva-mesa-driver vulkan-radeon
 fi
 
 echo ""
