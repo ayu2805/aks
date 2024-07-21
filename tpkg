@@ -25,6 +25,7 @@ jdk-openjdk
 jfsutils
 libreoffice-fresh
 libsecret
+mesa
 mtools
 neofetch
 neovim
@@ -48,6 +49,7 @@ udftools
 ufw
 unrar
 unzip
+vulkan-mesa-layers
 wget
 wl-clipboard
 xclip
