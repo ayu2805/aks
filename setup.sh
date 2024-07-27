@@ -151,6 +151,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     git config --global commit.gpgsign true
 fi
 
+echo ""
 if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
     echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
 else
