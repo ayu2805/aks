@@ -41,39 +41,6 @@ if [ "$(pactree -r linux-zen)" ]; then
     sudo pacman -S --needed --noconfirm linux-zen-headers
 fi
 
-if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
-    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
-else
-    echo ""
-    read -r -p "Do you want Chaotic-AUR? [y/N] " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-        sudo pacman-key --lsign-key 3056513887B78AEB
-        sudo pacman -U --needed --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
-        sudo pacman -Syu
-
-        if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
-            true
-        else
-            sudo pacman -S --needed --noconfirm yay
-        fi
-    fi
-fi
-
-if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
-    true
-else
-    sudo pacman -S --needed --noconfirm git base-devel
-    git clone https://aur.archlinux.org/yay-bin.git --depth=1
-    cd yay-bin
-    yes | makepkg -si
-    cd ..
-    rm -rf yay-bin
-fi
-
-yay -S --answerclean A --answerdiff N --removemake --cleanafter --save
-
 echo ""
 read -r -p "Do you want to install Intel drivers? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -184,6 +151,39 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     git config --global commit.gpgsign true
 fi
 
+if [ "$(pactree -r chaotic-keyring && pactree -r chaotic-mirrorlist)" ]; then
+    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
+else
+    echo ""
+    read -r -p "Do you want Chaotic-AUR? [y/N] " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+        sudo pacman-key --lsign-key 3056513887B78AEB
+        sudo pacman -U --needed --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+        echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | sudo tee -a /etc/pacman.d/custom > /dev/null
+        sudo pacman -Syu
+
+        if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
+            true
+        else
+            sudo pacman -S --needed --noconfirm yay
+        fi
+    fi
+fi
+
+if [ "$(pactree -r yay || pactree -r yay-bin)" ]; then
+    true
+else
+    sudo pacman -S --needed --noconfirm git base-devel
+    git clone https://aur.archlinux.org/yay-bin.git --depth=1
+    cd yay-bin
+    yes | makepkg -si
+    cd ..
+    rm -rf yay-bin
+fi
+
+yay -S --answerclean A --answerdiff N --removemake --cleanafter --save
+
 echo ""
 read -r -p "Do you want to install Firefox? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
@@ -193,7 +193,7 @@ fi
 echo ""
 read -r -p "Do you want to install Google Chrome? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm google-chrome
+    yay -Syu --needed --noconfirm google-chrome
 fi
 
 echo ""
