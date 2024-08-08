@@ -70,7 +70,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-sudo pacman -S --needed --noconfirm - <tpkg
+sudo pacman -S --needed --noconfirm - <common
 sudo systemctl enable --now ufw
 sudo systemctl enable --now cups
 sudo systemctl disable systemd-resolved.service
