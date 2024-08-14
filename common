@@ -22,7 +22,6 @@ gtk-engine-murrine
 gutenprint
 inetutils
 jdk-openjdk
-jfsutils
 libreoffice-fresh
 libsecret
 mesa
@@ -30,7 +29,6 @@ mtools
 neofetch
 neovim
 nftables
-nilfs-utils
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -39,13 +37,11 @@ ntfs-3g
 p7zip
 power-profiles-daemon
 python-pipx
-reiserfsprogs
 samba
 squashfs-tools
 sshfs
 system-config-printer
 ttf-liberation
-udftools
 ufw
 unrar
 unzip
@@ -54,7 +50,6 @@ wget
 wl-clipboard
 xclip
 xf86-input-evdev
-xfsprogs
 xorg-server
 xsel
 yt-dlp
