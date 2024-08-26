@@ -200,7 +200,8 @@ fi
 echo ""
 read -r -p "Do you want Bluetooth Service? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S --needed --noconfirm bluez bluez-utils
+    sudo pacman -S --needed --noconfirm bluez
+    sudo sed -i 's/#AutoEnable=true/AutoEnable=false/' /etc/bluetooth/main.conf
     sudo systemctl enable bluetooth
 fi
 
